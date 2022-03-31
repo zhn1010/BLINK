@@ -410,8 +410,8 @@ if __name__ == "__main__":
         "crossencoder_config": models_path + "crossencoder_wiki_large.json",
         "fast": False,  # set this to be true if speed is a concern
         "max_cand_length": 128,
-        "faiss_index": "hnsw",
-        "index_path": models_path + "faiss_hnsw_index_cs_related_wiki_and_pwc_entities.pkl",
+        "faiss_index": "flat",
+        "index_path": models_path + "faiss_flat_index_cs_related_wiki_and_pwc_entities.pkl",
         "output_path": "logs/"  # logging directory
     }
 
