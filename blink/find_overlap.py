@@ -367,9 +367,9 @@ def process_triple(triple_file_dict):
                             proper_bound = bound
                             break
                     if(proper_bound):
-                        left_context = ' '.join(entity_info["tokens"][:proper_bound[0]])
-                        mention = ' '.join(entity_info["tokens"][proper_bound[0]: proper_bound[1]])
-                        right_context = ' '.join(entity_info["tokens"][proper_bound[1]:])
+                        left_context = ' '.join(sub_section["tokens"][:proper_bound[0]])
+                        mention = ' '.join(sub_section["tokens"][proper_bound[0]: proper_bound[1]])
+                        right_context = ' '.join(sub_section["tokens"][proper_bound[1]:])
                         data_to_link.append({
                             'id': f'{sub_section_index}-{entity_info["key"]}',
                             'label': 'unknown',
