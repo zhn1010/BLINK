@@ -489,6 +489,7 @@ def augment_triple(triple_file_dict, nel_result, data_to_link):
                     for i in range(len(data_to_link))
                     if data_to_link[i]["id"] == entity_id
                 ]
+                print("len(found_indexes):", len(found_indexes))
                 if len(found_indexes) > 0:
                     found_index = found_indexes[0]
                     print(
