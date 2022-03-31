@@ -440,7 +440,7 @@ if __name__ == "__main__":
         save_dir = os.path.join(aug_triples_dir, tail)
         with open(save_dir, 'w') as f_handler:
             json.dump(aug_triple_file_dict, f_handler)
-
+        break
 
     # data_to_link = load_test_data("models/myKB.jsonl")
 
