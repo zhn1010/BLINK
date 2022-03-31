@@ -113,11 +113,11 @@ def filter_crossencoder_tensor_input(
 
 
 def prepare_crossencoder_data(
-    tokenizer, samples, labels, nns, id2title, id2text, keep_all=False
+    tokenizer, samples, labels, nns, id2title, id2text, keep_all=False, max_context_length=32
 ):
 
     # encode mentions
-    context_input_list = prepare_crossencoder_mentions(tokenizer, samples)
+    context_input_list = prepare_crossencoder_mentions(tokenizer, samples, max_context_length)
 
     # encode candidates (output of biencoder)
     label_input_list, candidate_input_list = prepare_crossencoder_candidates(
