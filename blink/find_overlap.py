@@ -483,7 +483,7 @@ def augment_triple(triple_file_dict, nel_result, data_to_link):
     for sub_section_index, sub_section in enumerate(triple_file_dict):
         if "entities_info" in sub_section:
             for entity_info in sub_section["entities_info"]:
-                entity_id = (f'{sub_section_index}-{entity_info["key"]}',)
+                entity_id = f'{sub_section_index}-{entity_info["key"]}'
                 found_indexes = [
                     i
                     for i in range(len(data_to_link))
