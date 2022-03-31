@@ -480,6 +480,9 @@ def process_triple(triple_file_dict):
 
 
 def augment_triple(triple_file_dict, nel_result, data_to_link):
+    print("data_to_link", data_to_link)
+    print("=======================================")
+    print("nel_result", nel_result)
     for sub_section_index, sub_section in enumerate(triple_file_dict):
         if "entities_info" in sub_section:
             for entity_info in sub_section["entities_info"]:
