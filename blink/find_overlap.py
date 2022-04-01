@@ -525,41 +525,40 @@ if __name__ == "__main__":
         "fast": False,  # set this to be true if speed is a concern
         "max_cand_length": 128,
         "faiss_index": "flat",
-        "index_path": models_path
-        + "faiss_flat_index_cs_related_wiki_and_pwc_entities.pkl",
+        "index_path": models_path + "faiss_flat_index_cs_related_wiki_and_pwc_entities.pkl",
         "output_path": "logs/",  # logging directory
     }
 
-    base_dir = "/mnt/BIG-HDD-STORAGE/ebi/arxiv/processed"
-    triples_dir = f"{base_dir}/triples"
-    aug_triples_dir = f"{base_dir}/aug_triples_blink"
+    # base_dir = "/mnt/BIG-HDD-STORAGE/ebi/arxiv/processed"
+    # triples_dir = f"{base_dir}/triples"
+    # aug_triples_dir = f"{base_dir}/aug_triples_blink"
 
     args = argparse.Namespace(**config)
 
     params = args.__dict__
     compute_candidate_encoding(params)
 
-    # build fiass index from candidate encoded matrix if not exists
+    # # build fiass index from candidate encoded matrix if not exists
     build_index(args.index_path, args.entity_encoding)
 
-    logger = utils.get_logger(args.output_path)
+    # logger = utils.get_logger(args.output_path)
 
-    triple_files = glob2.glob(f"{triples_dir}/*.json")
-    pbar = tqdm(triple_files)
-    for triple_file in pbar:
-        head, tail = os.path.split(triple_file)
-        triple_file_dict = json.load(open(triple_file))
-        data_to_link = process_triple(triple_file_dict)
-        nel_result = run(args, data_to_link, logger)
-        aug_triple_file_dict = augment_triple(
-            triple_file_dict,
-            {"scores": nel_result[4], "predictions": nel_result[3]},
-            data_to_link,
-        )
-        save_dir = os.path.join(aug_triples_dir, tail)
-        with open(save_dir, "w") as f_handler:
-            json.dump(aug_triple_file_dict, f_handler)
-        break
+    # triple_files = glob2.glob(f"{triples_dir}/*.json")
+    # pbar = tqdm(triple_files)
+    #for triple_file in pbar:
+    #    head, tail = os.path.split(triple_file)
+    #    triple_file_dict = json.load(open(triple_file))
+    #    data_to_link = process_triple(triple_file_dict)
+    #    nel_result = run(args, data_to_link, logger)
+    #    aug_triple_file_dict = augment_triple(
+    #        triple_file_dict,
+    #        {"scores": nel_result[4], "predictions": nel_result[3]},
+    #        data_to_link,
+    #    )
+    #    save_dir = os.path.join(aug_triples_dir, tail)
+    #    with open(save_dir, "w") as f_handler:
+    #        json.dump(aug_triple_file_dict, f_handler)
+    #    break
 
     # data_to_link = load_test_data("models/myKB.jsonl")
 
