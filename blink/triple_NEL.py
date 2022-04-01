@@ -570,7 +570,7 @@ if __name__ == "__main__":
     for triple_file in pbar:
         head, tail = os.path.split(triple_file)
         save_dir = os.path.join(aug_triples_dir, tail)
-        if os.path.exists(save_dir):
+        if not os.path.exists(save_dir):
             triple_file_dict = json.load(open(triple_file))
             data_to_link = process_triple(triple_file_dict)
             nel_result = run(args, data_to_link, logger)
