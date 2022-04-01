@@ -577,7 +577,6 @@ if __name__ == "__main__":
 
             with open(save_dir, "w") as f_handler:
                 json.dump(aug_triple_file_dict, f_handler, indent=4)
-            break
 
     # (bi_encoder_nns, bi_encoder_score, title2id,
     #  id2title, id2text, predictions, cross_encoder_scores) = run(args, data_to_link, logger)
