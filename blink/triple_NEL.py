@@ -2,6 +2,7 @@ import argparse
 import os.path
 
 import torch
+import random
 from tqdm import tqdm
 import numpy as np
 import json
@@ -491,13 +492,6 @@ def augment_triple(triple_file_dict, nel_result, data_to_link):
                 ]
                 if len(found_indexes) > 0:
                     found_index = found_indexes[0]
-                    print(
-                        entity_info["literals"],
-                        " -> ",
-                        nel_result["predictions"][found_index][0],
-                        " -> ",
-                        nel_result["scores"][found_index][0],
-                    )
                     if nel_result["scores"][found_index][0] > 0:
                         entity_info["entity_id"] = nel_result["predictions"][
                             found_index
@@ -561,6 +555,7 @@ if __name__ == "__main__":
     logger = utils.get_logger(args.output_path)
 
     triple_files = glob2.glob(f"{triples_dir}/*.json")
+    triple_files = random.shuffle(triple_files)
     pbar = tqdm(triple_files)
     for triple_file in pbar:
         head, tail = os.path.split(triple_file)
