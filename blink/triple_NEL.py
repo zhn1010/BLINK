@@ -418,11 +418,6 @@ def run(args, test_data, logger):
     )
 
     return (
-        bi_encoder_nns,
-        bi_encoder_score,
-        title2id,
-        id2title,
-        id2text,
         predictions,
         cross_encoder_scores,
     )
@@ -573,10 +568,10 @@ if __name__ == "__main__":
         if not os.path.exists(save_dir):
             triple_file_dict = json.load(open(triple_file))
             data_to_link = process_triple(triple_file_dict)
-            nel_result = run(args, data_to_link, logger)
+            predictions, cross_encoder_scores = run(args, data_to_link, logger)
             aug_triple_file_dict = augment_triple(
                 triple_file_dict,
-                {"scores": nel_result[4], "predictions": nel_result[3]},
+                {"scores": cross_encoder_scores, "predictions": predictions},
                 data_to_link,
             )
 
