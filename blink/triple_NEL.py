@@ -555,7 +555,7 @@ if __name__ == "__main__":
     logger = utils.get_logger(args.output_path)
 
     triple_files = glob2.glob(f"{triples_dir}/*.json")
-    triple_files = random.shuffle(triple_files)
+    random.shuffle(triple_files)
     pbar = tqdm(triple_files)
     for triple_file in pbar:
         head, tail = os.path.split(triple_file)
