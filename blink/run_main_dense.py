@@ -230,20 +230,24 @@ if __name__ == "__main__":
         if not os.path.exists(save_dir):
             triple_file_dict = json.load(open(triple_file))
             data_to_link = process_triple(triple_file_dict)
-            (
-                _,
-                _,
-                _,
-                _,
-                _,
-                predictions,
-                scores,
-            ) = main_dense.run(args, None, *models, test_data=data_to_link)
-            aug_triple_file_dict = augment_triple(
-                triple_file_dict,
-                {"scores": scores, "predictions": predictions},
-                data_to_link,
-            )
+            if(data_to_link):
+                (
+                    _,
+                    _,
+                    _,
+                    _,
+                    _,
+                    predictions,
+                    scores,
+                ) = main_dense.run(args, None, *models, test_data=data_to_link)
+                aug_triple_file_dict = augment_triple(
+                    triple_file_dict,
+                    {"scores": scores, "predictions": predictions},
+                    data_to_link,
+                )
 
-            with open(save_dir, "w") as f_handler:
-                json.dump(aug_triple_file_dict, f_handler, indent=4)
+                with open(save_dir, "w") as f_handler:
+                    json.dump(aug_triple_file_dict, f_handler, indent=4)
+            else:
+                with open(save_dir, "w") as f_handler:
+                    json.dump(triple_file_dict, f_handler, indent=4)
